@@ -1,11 +1,12 @@
 import base64
 from io import BytesIO
 import os
-import simplejson as json
+# import simplejson as json
 import re
 import modules.scripts as scripts
 import gradio as gr
 import boto3
+import pprint
 
 aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', '')
@@ -40,7 +41,6 @@ class Scripts(scripts.Script):
         
         for i in range(len(processed.images)):
 
-            json_str = json.dumps(processed.images[i], indent=4, sort_keys=True)
             print("\nThe preprocessed image object:")
-            print(json_str)
+            pprint(processed.images[i])
         return True

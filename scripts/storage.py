@@ -30,8 +30,8 @@ class Scripts(scripts.Script):
 
     def ui(self, is_img2img):
         checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
-        bucket_name = gr.inputs.Textbox(label="Bucket Name", default="StableDiffusion")
-        collection_name = gr.inputs.Textbox(label="Collection Name", default="Automatic1111")
+        bucket_name = gr.inputs.Textbox(label="Bucket Name", default="Enter Bucket Name")
+        collection_name = gr.inputs.Textbox(label="Bucket Path", default="Enter Bucket path")
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
     def postprocess(self, p, processed,checkbox_save_to_s3,bucket_name,collection_name):

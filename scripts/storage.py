@@ -31,7 +31,7 @@ class Scripts(scripts.Script):
         collection_name = gr.inputs.Textbox(label="Bucket Path", default="Enter Bucket path")
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
-    def postprocess(self, p, processed, checkbox_save_to_s3):
+    def postprocess(self, p, processed, checkbox_save_to_s3, bucket_name):
         # pprint(p)
         print('in s3 upload postprocess method')
         if not checkbox_save_to_s3:
@@ -47,9 +47,9 @@ class Scripts(scripts.Script):
 
         for i in range(len(processed.images)):
             print("\nThe preprocessed image object:")
-            pprint(processed.images[i])
+            # pprint(processed.images[i])
             # pprint(s3_resource)
-            pprint(p)
+            # pprint(p)
         print('after pretty printing objects')
 
         return True

@@ -1,12 +1,14 @@
 import base64
-from io import BytesIO
 import os
-# import simplejson as json
 import re
 import modules.scripts as scripts
 import gradio as gr
 import boto3
 import pprint
+
+from io import BytesIO
+from modules.processing import process_images, Processed
+from modules.processing import Processed
 
 aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', '')
@@ -52,5 +54,7 @@ class Scripts(scripts.Script):
             # pprint(p)
         print('after pretty printing objects')
 
-        return True
+        proc = process_images(p)
+
+        return proc
 

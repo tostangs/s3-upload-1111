@@ -31,7 +31,7 @@ class Scripts(scripts.Script):
         collection_name = gr.inputs.Textbox(label="Bucket Path", default="Enter Bucket path")
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
-    def postprocess(self, p, processed, checkbox_save_to_s3, bucket_name):
+    def postprocess(self, p, processed, checkbox_save_to_s3, bucket_name, collection_name):
         # pprint(p)
         print('in s3 upload postprocess method')
         if not checkbox_save_to_s3:

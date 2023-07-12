@@ -42,7 +42,7 @@ class Scripts(scripts.Script):
 
         s3_resource = boto3_session.resource('s3')
         print('S3 Resource:')
-        print(s3_resource)
+        pprint(s3_resource)
 
         # Check if bucket exists and user has access...
         try:

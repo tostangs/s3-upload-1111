@@ -7,7 +7,7 @@ This extension allows you to store pictures to your choice of AWS S3 bucket. At 
 
 ## Prerequisites
 
-Before installing `s3-upload-11111`, you need to make sure that AWS CLI is installed and configured on your machine.
+Before installing `s3-upload-1111`, you need to make sure that AWS CLI is installed and configured on your machine.
 
 To install AWS CLI, follow the guide on the official AWS Documentation - [Installing AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 

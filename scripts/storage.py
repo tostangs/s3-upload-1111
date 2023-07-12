@@ -1,12 +1,12 @@
 import base64
 import os
 import re
-import modules.scripts as scripts
 import gradio as gr
 import boto3
 import pprint
 import botocore
-import json
+import datetime
+import modules.scripts as scripts
 
 from io import BytesIO
 from modules.processing import process_images, Processed
@@ -70,16 +70,50 @@ class Scripts(scripts.Script):
             print("\nThe preprocessed image object:")
             print(processed.images[i])
 
+            regex = r"Steps:.*$"
+            seed = processed.seed
+            prompt = processed.prompt
+            neg_prompt = processed.negative_prompt
+            info = re.findall(regex, processed.info, re.M)[0]
+            input_dict = dict(item.split(": ") for item in str(info).split(", "))
+            steps = int(input_dict["Steps"])
+            sampler = input_dict["Sampler"]
+            cfg_scale = float(input_dict["CFG scale"])
+            size = tuple(map(int, input_dict["Size"].split("x")))
+            model_hash = input_dict["Model hash"]
+            model = input_dict["Model"]
+
+            # Set metadata for the file
+            metadata = {
+                'prompt': str(prompt),
+                'negative-prompt': str(neg_prompt),
+                'settings': str(steps),
+                'type': 'GRAPHIC',
+                'user_id': 'f6546399-112f-4ac4-bf1d-371e79c0a67f',
+                'tags': '[]',
+                'org_id': 'G01H4KDWE9XB8T7HJT7QA4PQQHY',
+                'model_hash': str(model_hash),
+                'model': str(model),
+                'size': str(size),
+                'cfg_scale': str(cfg_scale),
+                'sampler': str(sampler)
+            }
+
             # Try to upload the processed image...
-            try:  
+            try:
+                curr_time = datetime.now().strftime("%Y%m%d%H%M%S%f")
                 img_data = BytesIO()
                 processed.images[i].save(img_data, format='PNG')
                 img_data.seek(0)
-                s3_resource.Bucket(bucket_name).put_object(Key=f'{collection_name}/image_{i}.png', Body=img_data)
+                s3_resource.Bucket(bucket_name).put_object(
+                    Key=f'{collection_name}/auto1111_{i}_{curr_time}.png', 
+                    Body=img_data,
+                    Metadata=metadata
+                )
                 print(f'Image {i} uploaded successfully.')
-                
+                        
             except Exception as e:
                 print(f"Something went wrong while uploading image {i}: {e}")
-                continue 
+                continue
         return True
 

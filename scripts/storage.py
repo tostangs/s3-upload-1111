@@ -5,9 +5,9 @@ import gradio as gr
 import boto3
 import pprint
 import botocore
-import datetime
 import modules.scripts as scripts
 
+from datetime import datetime
 from io import BytesIO
 from modules.processing import process_images, Processed
 

@@ -6,6 +6,7 @@ import gradio as gr
 import boto3
 import pprint
 import botocore
+import json
 
 from io import BytesIO
 from modules.processing import process_images, Processed
@@ -42,7 +43,8 @@ class Scripts(scripts.Script):
 
         s3_resource = boto3_session.resource('s3')
         print('S3 Resource:')
-        pprint(s3_resource)
+        s3_print = json.dumps(s3_resource)
+        print(s3_print)
 
         # Check if bucket exists and user has access...
         try:
@@ -51,7 +53,8 @@ class Scripts(scripts.Script):
             print(aws_secret_access_key)
             s3_resource.meta.client.head_bucket(Bucket=bucket_name)
             print('S3 Resource:')
-            print(s3_resource)
+            s3_print = json.dumps(s3_resource)
+            print(s3_print)
         except botocore.exceptions.ClientError as e:
             error_code = int(e.response['Error']['Code'])
             if error_code == 403:
@@ -65,10 +68,13 @@ class Scripts(scripts.Script):
 
         print('after check if user has access to the bucket')
 
+        images_print = json.dumps(p.images)
+        print(images_print)
+
         for i in range(len(p.images)):
             print("\nThe preprocessed image object:")
-            pprint(p.images[i])
-            pprint(s3_resource)
+            image_print = json.dumps(p.images[i])
+            print(image_print)
 
             # Try to upload the processed image...
             try:  

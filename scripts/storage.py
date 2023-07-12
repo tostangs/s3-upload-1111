@@ -49,9 +49,11 @@ class Scripts(scripts.Script):
             error_code = int(e.response['Error']['Code'])
             if error_code == 403:
                 print("Private Bucket. Forbidden Access!")
+                print(e.response)
                 return False
             elif error_code == 404:
                 print("Bucket Does Not Exist!")
+                print(e.response)
                 return False
 
         print('after check if user has access to the bucket')

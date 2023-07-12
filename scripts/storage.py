@@ -66,14 +66,14 @@ class Scripts(scripts.Script):
 
         print('after check if user has access to the bucket')
 
-        for i in range(len(p.images)):
+        for i in range(len(processed.images)):
             print("\nThe preprocessed image object:")
-            print(p.images[i])
+            print(processed.images[i])
 
             # Try to upload the processed image...
             try:  
                 img_data = BytesIO()
-                p.images[i].save(img_data, format='PNG')
+                processed.images[i].save(img_data, format='PNG')
                 img_data.seek(0)
                 s3_resource.Bucket(bucket_name).put_object(Key=f'{collection_name}/image_{i}.png', Body=img_data)
                 print(f'Image {i} uploaded successfully.')

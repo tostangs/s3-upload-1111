@@ -53,7 +53,7 @@ class Scripts(scripts.Script):
             print(aws_secret_access_key)
             s3_resource.meta.client.head_bucket(Bucket=bucket_name)
             print('S3 Resource:')
-            s3_print = json.dumps(s3_resource)
+            s3_print = json.dumps(s3_resource.__dict__)
             print(s3_print)
         except botocore.exceptions.ClientError as e:
             error_code = int(e.response['Error']['Code'])
@@ -73,7 +73,7 @@ class Scripts(scripts.Script):
 
         for i in range(len(p.images)):
             print("\nThe preprocessed image object:")
-            image_print = json.dumps(p.images[i])
+            image_print = json.dumps(p.images[i].__dict__)
             print(image_print)
 
             # Try to upload the processed image...

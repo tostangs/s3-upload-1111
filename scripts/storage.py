@@ -65,6 +65,6 @@ class Scripts(scripts.Script):
         print('after check to save to s3')
 
         proc = process_images(p)
-        return Processed(p, proc.images, p.seed, "")
+        return proc
 
 

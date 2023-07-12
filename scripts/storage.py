@@ -30,12 +30,11 @@ class Scripts(scripts.Script):
 
     def ui(self, is_img2img):
         checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
-        bucket_name = gr.inputs.Textbox(label="Bucket Name", default="Enter Bucket Name")
-        collection_name = gr.inputs.Textbox(label="Bucket Path", default="Enter Bucket path")
+        bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
+        collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
     def postprocess(self, p, processed, checkbox_save_to_s3, bucket_name, collection_name):
-        # pprint(p)
         print('in s3 upload postprocess method')
         if not checkbox_save_to_s3:
             return True
@@ -43,7 +42,7 @@ class Scripts(scripts.Script):
 
         s3_resource = boto3_session.resource('s3')
 
-        # Check if bucket exists and user has access
+        # Check if bucket exists and user has access...
         try:
             s3_resource.meta.client.head_bucket(Bucket=bucket_name)
         except botocore.exceptions.ClientError as e:
@@ -62,7 +61,7 @@ class Scripts(scripts.Script):
             pprint(p.images[i])
             pprint(s3_resource)
 
-            # Try to upload the processed image
+            # Try to upload the processed image...
             try:  
                 img_data = BytesIO()
                 p.images[i].save(img_data, format='PNG')

@@ -33,28 +33,41 @@ class Scripts(scripts.Script):
         collection_name = gr.inputs.Textbox(label="Bucket Path", default="Enter Bucket path")
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
-    def postprocess(self, p, checkbox_save_to_s3, bucket_name, collection_name):
+    # def postprocess(self, p, checkbox_save_to_s3, bucket_name, collection_name):
+    #     pprint(p)
+    #     print('in s3 upload postprocess method')
+    #     if not checkbox_save_to_s3:
+    #         return True
+    #     print('after check to save to s3')
+
+    #     # s3_resource = boto3_session.resource('s3')
+
+    #     # Check if bucket exists
+    #     # if s3_resource.Bucket(bucket_name) not in s3_resource.buckets.all():
+    #     #     return True
+    #     print('after check if user has access to the bucket')
+
+    #     # for i in range(len(p.images)):
+    #     #     print("\nThe preprocessed image object:")
+    #         # pprint(p.images[i])
+    #         # pprint(s3_resource)
+    #         # pprint(p)
+    #     print('after pretty printing objects')
+
+    #     proc = process_images(p)
+
+    #     return proc
+    def run(self, p, checkbox_save_to_s3, bucket_name, collection_name):
         pprint(p)
         print('in s3 upload postprocess method')
         if not checkbox_save_to_s3:
             return True
         print('after check to save to s3')
 
-        # s3_resource = boto3_session.resource('s3')
+        try:
+            proc = process_images(p)
+        finally:
+            return Processed(p, proc.images, p.seed, "")
+        return Processed(p, p.images, p.seed, "")
 
-        # Check if bucket exists
-        # if s3_resource.Bucket(bucket_name) not in s3_resource.buckets.all():
-        #     return True
-        print('after check if user has access to the bucket')
-
-        # for i in range(len(p.images)):
-        #     print("\nThe preprocessed image object:")
-            # pprint(p.images[i])
-            # pprint(s3_resource)
-            # pprint(p)
-        print('after pretty printing objects')
-
-        proc = process_images(p)
-
-        return proc
 

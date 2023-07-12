@@ -35,13 +35,13 @@ For more information, check out the guide [Configuring the AWS CLI](https://docs
 
 
 ## Usage
-Set environment variables if needed before starting the application:
+Set environment variables needed before starting the application:
 | Variable                 | Example                          |
 |--------------------------|----------------------------------|
 | `AWS_ACCESS_KEY_ID`      | `'<your_local_access_key_id>'`   |
 | `AWS_SECRET_ACCESS_KEY`  | `<your_local_secret_access_key>` |
 
-Then, simply check the `Save to S3` checkbox and generate!
+Then, simply check the `Save to S3` checkbox, input your bucketname and bucketpath into the associative text boxes, and generate!
 
 ## Contributing
 I'm sure this plugin can be improved in many ways so feel free to submit PRs!

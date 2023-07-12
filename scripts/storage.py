@@ -9,7 +9,7 @@ import botocore
 
 from io import BytesIO
 from modules.processing import process_images, Processed
-from modules.processing import Processed
+
 
 aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID', '')
@@ -45,6 +45,8 @@ class Scripts(scripts.Script):
         # Check if bucket exists and user has access...
         try:
             s3_resource.meta.client.head_bucket(Bucket=bucket_name)
+            print('S3 Resource:')
+            print(s3_resource)
         except botocore.exceptions.ClientError as e:
             error_code = int(e.response['Error']['Code'])
             if error_code == 403:

@@ -1,7 +1,7 @@
 
 ## Introduction
 
-**s3-upload-11111** is an extension for [AUTOMATIC1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
+**s3-upload-1111** is an extension for [AUTOMATIC1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
 
 This extension allows you to store pictures to your choice of AWS S3 bucket. At the moment it only supports AWS S3.
 

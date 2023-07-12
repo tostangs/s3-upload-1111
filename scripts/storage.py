@@ -43,7 +43,7 @@ class Scripts(scripts.Script):
 
         s3_resource = boto3_session.resource('s3')
         print('S3 Resource:')
-        s3_print = json.dumps(s3_resource)
+        s3_print = json.dumps(s3_resource.__dict__)
         print(s3_print)
 
         # Check if bucket exists and user has access...
@@ -68,7 +68,7 @@ class Scripts(scripts.Script):
 
         print('after check if user has access to the bucket')
 
-        images_print = json.dumps(p.images)
+        images_print = json.dumps(p.images.__dict__)
         print(images_print)
 
         for i in range(len(p.images)):

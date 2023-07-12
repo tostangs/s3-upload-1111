@@ -34,7 +34,7 @@ class Scripts(scripts.Script):
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
     def postprocess(self, p, processed, checkbox_save_to_s3, bucket_name, collection_name):
-        pprint(p)
+        # pprint(p)
         print('in s3 upload postprocess method')
         if not checkbox_save_to_s3:
             return True
@@ -51,10 +51,10 @@ class Scripts(scripts.Script):
             print("\nThe preprocessed image object:")
             pprint(p.images[i])
             pprint(s3_resource)
-            pprint(p)
+            # pprint(p)
         print('after pretty printing objects')
 
-        proc = process_images(p)
+        # proc = process_images(p)
 
-        return proc
+        return True
 

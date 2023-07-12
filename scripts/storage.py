@@ -44,6 +44,9 @@ class Scripts(scripts.Script):
 
         # Check if bucket exists and user has access...
         try:
+            print("keys:")
+            print(aws_access_key_id)
+            print(aws_secret_access_key)
             s3_resource.meta.client.head_bucket(Bucket=bucket_name)
             print('S3 Resource:')
             print(s3_resource)

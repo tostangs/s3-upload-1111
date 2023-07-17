@@ -91,6 +91,7 @@ class Scripts(scripts.Script):
                 'type': 'GRAPHIC',
                 'user_id': 'f6546399-112f-4ac4-bf1d-371e79c0a67f',
                 'tags': '[]',
+                'seed': str(seed),
                 'org_id': 'G01H4KDWE9XB8T7HJT7QA4PQQHY',
                 'model_hash': str(model_hash),
                 'model': str(model),

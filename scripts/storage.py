@@ -34,10 +34,9 @@ class Scripts(scripts.Script):
         
         with FormRow():
             with gr.Column():
-                with FormRow():
-                    checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
-                    bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
-                    collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
+                checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
+                bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
+                collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
 
         return [checkbox_save_to_s3, bucket_name, collection_name]
 

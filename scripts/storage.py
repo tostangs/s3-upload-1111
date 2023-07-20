@@ -31,24 +31,13 @@ class Scripts(scripts.Script):
         return scripts.AlwaysVisible
 
     def ui(self, is_img2img):
-        checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
-        bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
-        collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
         
         with FormRow():
             with gr.Column():
                 with FormRow():
                     checkbox_save_to_s3 = gr.inputs.Checkbox(label="Save to s3", default=False)
-
-            with gr.Column():
-                bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
-                collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
-
-        # return {
-        #     "checkbox_save_to_s3": checkbox_save_to_s3,
-        #     "bucket_name": bucket_name,
-        #     "collection_name": collection_name
-        # }
+                    bucket_name = gr.inputs.Textbox(label="Bucket Name", placeholder="Enter Bucket Name")
+                    collection_name = gr.inputs.Textbox(label="Bucket Path", placeholder="Enter Bucket path")
 
         return [checkbox_save_to_s3, bucket_name, collection_name]
 
